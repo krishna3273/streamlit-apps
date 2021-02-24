@@ -20,20 +20,23 @@ style_image_name="images/style-images/"+("rain-princess" if style_name=="rain_pr
 # print(style_image_name)
 
 
-st.write("### Source Image:")
 image=Image.open(input_image_name)
 style_image=Image.open(style_image_name)
-st.image(image,width=400)
+
+col1, col2 = st.beta_columns(2)
+
+col1.header("Source Image:")
+col1.image(image, use_column_width=True)
+
+col2.header("Style Image:")
+col2.image(style_image, use_column_width=True)
 
 
 
 clicked=st.button("Stylize")
 
-style_show=st.sidebar.button("Show Style Image")
 
-if style_show:
-    st.write("### Style Image:")
-    st.image(style_image,width=400)
+
 
 if clicked:
     model=style.load_model(model_name)
